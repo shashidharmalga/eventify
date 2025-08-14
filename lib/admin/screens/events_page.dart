@@ -14,7 +14,7 @@ class EventsPage extends ConsumerStatefulWidget {
 class _EventsPageState extends ConsumerState<EventsPage> {
   @override
   Widget build(BuildContext context) {
-    final eventsValue = ref.watch(createEventNotifierProvider);
+    final eventsValue = ref.watch(createStudentEventItemProvider);
 
     return eventsValue.when(
       loading: () => const Scaffold(

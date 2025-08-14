@@ -6,26 +6,44 @@ part of 'create_event_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$createEventNotifierHash() =>
-    r'deaa71e7f0c89e1649e82b211c93c62de98c86d8';
+String _$createStudentEventItemHash() =>
+    r'fd28575bfd71ad2c571f99636f2e16beb663f58d';
 
-/// See also [CreateEventNotifier].
-@ProviderFor(CreateEventNotifier)
-final createEventNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<
-      CreateEventNotifier,
-      List<CreateEventModel>
-    >.internal(
-      CreateEventNotifier.new,
-      name: r'createEventNotifierProvider',
+/// See also [CreateStudentEventItem].
+@ProviderFor(CreateStudentEventItem)
+final createStudentEventItemProvider =
+    AutoDisposeFutureProvider<List<CreateEventModel>>.internal(
+      CreateStudentEventItem,
+      name: r'createStudentEventItemProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$createEventNotifierHash,
+          : _$createStudentEventItemHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$CreateEventNotifier =
-    AutoDisposeAsyncNotifier<List<CreateEventModel>>;
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CreateStudentEventItemRef =
+    AutoDisposeFutureProviderRef<List<CreateEventModel>>;
+String _$createEventItemHash() => r'ae0f0359e46d3863ed82f8926048f09d174c995f';
+
+/// See also [CreateEventItem].
+@ProviderFor(CreateEventItem)
+final createEventItemProvider =
+    AutoDisposeAsyncNotifierProvider<
+      CreateEventItem,
+      List<CreateEventModel>
+    >.internal(
+      CreateEventItem.new,
+      name: r'createEventItemProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$createEventItemHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+typedef _$CreateEventItem = AutoDisposeAsyncNotifier<List<CreateEventModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

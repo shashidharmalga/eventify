@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:project_duel_role/student/models/create_event_model.dart';
-import 'package:project_duel_role/student/providers/create_event_provider.dart';
+import 'package:project_duel_role/admin/models/create_event_model.dart';
+import 'package:project_duel_role/admin/providers/create_event_provider.dart';
 
 class AdminEditScreen extends ConsumerStatefulWidget {
-  final dynamic item;
+  final CreateEventModel item; // strongly type the item
   const AdminEditScreen({super.key, required this.item});
 
   @override
@@ -22,11 +22,24 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
   @override
   void initState() {
     super.initState();
-    titleController = TextEditingController(text: widget.item.name);
-    descriptionController = TextEditingController(text: widget.item.description);
-    locationController = TextEditingController(text: widget.item.location);
-    imageController = TextEditingController(text: widget.item.imageUrl);
-    selectedDate = DateFormat('d-M-yyyy').parse(widget.item.dateTime);;
+    print(" Initializing AdminEditScreen for event: ${widget.item.id}");
+    titleController = TextEditingController(text: widget.item.name ?? '');
+    descriptionController =
+        TextEditingController(text: widget.item.description ?? '');
+    locationController =
+        TextEditingController(text: widget.item.location ?? '');
+    imageController =
+        TextEditingController(text: widget.item.imageUrl ?? '');
+
+    try {
+      selectedDate = DateFormat('d-M-yyyy').parse(widget.item.dateTime);
+    } catch (_) {
+      try {
+        selectedDate = DateTime.parse(widget.item.dateTime);
+      } catch (_) {
+        selectedDate = DateTime.now(); // fallback
+      }
+    }
   }
 
   @override
@@ -50,41 +63,56 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
         selectedDate = picked;
       });
     }
-  } 
+  }
+
   Future<void> _saveChanges() async {
+    print("Save button tapped");
+
     final title = titleController.text.trim();
     final desc = descriptionController.text.trim();
     final loc = locationController.text.trim();
     final imageUrl = imageController.text.trim();
+
     if (title.isEmpty || desc.isEmpty || loc.isEmpty || imageUrl.isEmpty) {
+      print("Missing required fields");
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please fill all fields")),
       );
       return;
     }
+
     final updatedEvent = CreateEventModel(
       id: widget.item.id,
       name: title,
       description: desc,
       location: loc,
-      image_url: imageUrl,
-      date_time: selectedDate.toString(),
+      imageUrl: imageUrl,
+      dateTime: DateFormat('d-M-yyyy').format(selectedDate),
       club: widget.item.club,
-      created_by: widget.item.created_by,
+      createdBy: widget.item.createdBy,
     );
+
     try {
-      await ref.read(createEventItemProvider.notifier).updateEvent(updatedEvent);
+      print("Calling updateEvent in provider...");
+      await ref
+          .read(createEventItemProvider.notifier)
+          .updateEvent(updatedEvent);
+
+      print("Event updated successfully");
       if (!mounted) return;
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Event updated successfully")),
       );
       Navigator.pop(context);
-    } catch (e) {
+    } catch (e, st) {
+      print("Failed to update event: $e\n$st");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to update: $e")),
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,11 +135,14 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
                   errorBuilder: (context, error, stackTrace) => Container(
                     color: Colors.grey[300],
                     height: 180,
-                    child: const Center(child: Icon(Icons.broken_image, size: 50)),
+                    child: const Center(
+                      child: Icon(Icons.broken_image, size: 50),
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
+
               TextField(
                 controller: titleController,
                 decoration: const InputDecoration(labelText: "Title"),
@@ -135,7 +166,7 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
                 controller: imageController,
                 decoration: const InputDecoration(labelText: "Image URL"),
                 onChanged: (_) {
-                  setState(() {});
+                  setState(() {}); 
                 },
               ),
               const SizedBox(height: 20),
@@ -143,7 +174,9 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
               Row(
                 children: [
                   Expanded(
-                    child: Text("Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}"),
+                    child: Text(
+                      "Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}",
+                    ),
                   ),
                   ElevatedButton(
                     onPressed: () => _selectDate(context),
@@ -157,9 +190,13 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
                 onPressed: _saveChanges,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurpleAccent,
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 ),
-                child: const Text("Save Changes", style: TextStyle(color: Colors.white)),
+                child: const Text(
+                  "Save Changes",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),

@@ -14,9 +14,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-      
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 40, left: 10),
+        padding: const EdgeInsets.only(top: 40, left: 10, right: 10),
         child: Container(
           color: const Color.fromARGB(255, 224, 218, 218),
           child: Column(
@@ -28,19 +27,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(width: 8),
                   const Text(
                     'Eventify',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 61, 28, 152)),
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 61, 28, 152),
+                    ),
                   ),
                   const Spacer(),
                   CircleAvatar(
                     radius: 16,
                     backgroundColor: Colors.white.withOpacity(0.3),
-                    child: const Icon(Icons.notifications, size: 20, color: Color.fromARGB(255, 46, 44, 154)),
+                    child: const Icon(Icons.notifications,
+                        size: 20, color: Color.fromARGB(255, 46, 44, 154)),
                   ),
                   const SizedBox(width: 8),
                   CircleAvatar(
                     radius: 16,
                     backgroundColor: Colors.white.withOpacity(0.3),
-                    child: const Icon(Icons.settings, size: 20, color: Color.fromARGB(255, 36, 41, 176)),
+                    child: const Icon(Icons.settings,
+                        size: 20, color: Color.fromARGB(255, 36, 41, 176)),
                   ),
                 ],
               ),
@@ -63,10 +68,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: 4),
                     Text(
                       'Tech Society 👋',
-                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(height: 4),
-                    Text('Manage your campus events', style: TextStyle(color: Colors.white70)),
+                    Text('Manage your campus events',
+                        style: TextStyle(color: Colors.white70)),
                   ],
                 ),
               ),
@@ -88,11 +98,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.purple,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Column(
-                          children: const [
+                        child: const Column(
+                          children: [
                             Icon(Icons.event, color: Colors.white),
                             SizedBox(height: 8),
-                            Text('My Events', style: TextStyle(color: Colors.white)),
+                            Text('My Events',
+                                style: TextStyle(color: Colors.white)),
                           ],
                         ),
                       ),
@@ -102,7 +113,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CreateEventPage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CreateEventPage()),
+                        );
                       },
                       borderRadius: BorderRadius.circular(12),
                       child: Container(
@@ -111,11 +126,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.teal,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Column(
-                          children: const [
+                        child: const Column(
+                          children: [
                             Icon(Icons.add, color: Colors.white),
                             SizedBox(height: 8),
-                            Text('Create Event', style: TextStyle(color: Colors.white)),
+                            Text('Create Event',
+                                style: TextStyle(color: Colors.white)),
                           ],
                         ),
                       ),
@@ -134,11 +150,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.orange,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Column(
-                          children: const [
+                        child: const Column(
+                          children: [
                             Icon(Icons.check_circle, color: Colors.white),
                             SizedBox(height: 8),
-                            Text('Attendance', style: TextStyle(color: Colors.white)),
+                            Text('Attendance',
+                                style: TextStyle(color: Colors.white)),
                           ],
                         ),
                       ),
@@ -173,13 +190,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      child: Column(
-                        children: const [
+                      child: const Column(
+                        children: [
                           Icon(Icons.event, color: Colors.purple),
                           SizedBox(height: 8),
-                          Text('12', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                          Text('12',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
                           SizedBox(height: 4),
-                          Text('Total Events', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
+                          Text('Total Events',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.grey)),
                         ],
                       ),
                     ),
@@ -199,13 +220,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      child: Column(
-                        children: const [
+                      child: const Column(
+                        children: [
                           Icon(Icons.group, color: Colors.purple),
                           SizedBox(height: 8),
-                          Text('247', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                          Text('247',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
                           SizedBox(height: 4),
-                          Text('Total Attendees', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
+                          Text('Total Attendees',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.grey)),
                         ],
                       ),
                     ),
@@ -225,25 +250,38 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      child: Column(
-                        children: const [
+                      child: const Column(
+                        children: [
                           Icon(Icons.star, color: Colors.purple),
                           SizedBox(height: 8),
-                          Text('4.8', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                          Text('4.8',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold)),
                           SizedBox(height: 4),
-                          Text('Avg Rating', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
+                          Text('Avg Rating',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.grey)),
                         ],
                       ),
-                      
                     ),
                   ),
                 ],
+              ),
+
+              const SizedBox(height: 24),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  'https://images.unsplash.com/photo-1521737604893-d14cc237f11d', 
+                  height: 180,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
           ),
         ),
       ),
-
     );
   }
 }

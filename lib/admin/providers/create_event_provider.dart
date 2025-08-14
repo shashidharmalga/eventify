@@ -1,28 +1,33 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_duel_role/admin/models/create_event_model.dart';
+import 'package:project_duel_role/admin/services/create_event_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
 part 'create_event_provider.g.dart';
 
 @riverpod
-class CreateEventNotifier extends _$CreateEventNotifier {
-  final supabase = Supabase.instance.client;
-
+class CreateEventItem extends _$CreateEventItem {
   @override
   Future<List<CreateEventModel>> build() async {
-    return await _fetchCreateEvents();
+    return await CreateEventService.fetchEventItems();
   }
 
-  Future<List<CreateEventModel>>  _fetchCreateEvents() async {
-    final userId = supabase.auth.currentUser!.id;
-    final response = await supabase
-        .from('events')
-        .select()
-        .eq('created_by', userId);
-    return response.map((e) => CreateEventModel.fromJson(e)).toList();
+  Future<void> updateEvent(CreateEventModel updatedEvent) async {
+    await CreateEventService.updateEventItem(updatedEvent);
+    state = AsyncData([
+      for (final item in state.value ?? [])
+        if (item.id == updatedEvent.id) updatedEvent else item,
+    ]);
   }
 
-
+  Future<void> deleteEvent(String id) async {
+    await CreateEventService.deleteEventItem(id);
+    state = AsyncData([
+      for (final item in state.value ?? [])
+        if (item.id != id) item,
+    ]);
+  }
 }
 
+@riverpod
+Future<List<CreateEventModel>> CreateStudentEventItem(CreateStudentEventItemRef ref) {
+  return CreateEventService.fetchStudentEventItems();
+}

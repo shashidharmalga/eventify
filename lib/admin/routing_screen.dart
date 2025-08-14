@@ -5,6 +5,7 @@ import 'package:project_duel_role/admin/screens/admin_bottom_bar.dart';
 import 'package:project_duel_role/admin/screens/admin_profile_screen.dart';
 import 'package:project_duel_role/admin/screens/auth/login_screen.dart';
 import 'package:project_duel_role/admin/screens/auth/register_page.dart';
+import 'package:project_duel_role/admin/screens/auth/splash_screen.dart';
 import 'package:project_duel_role/admin/screens/create_event_page.dart';
 import 'package:project_duel_role/admin/screens/events_page.dart';
 import 'package:project_duel_role/admin/screens/home_screen.dart';
@@ -34,7 +35,7 @@ final eventrouter = GoRouter(
   routes: [
     GoRoute(path: '/login', builder: (context, state) => LoginPage(String: String),),
     GoRoute(path: '/admin/myEvents', builder: (context, state) => EventsPage(),),
-    GoRoute(path: "/", builder: (context,state)=> LoginPage(String: String)),
+    GoRoute(path: "/", builder: (context,state)=> SplashScreen()),
     GoRoute(path: "/register", builder:(context, state) => RegisterScreen(),),
 
     ShellRoute(
