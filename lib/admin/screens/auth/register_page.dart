@@ -59,7 +59,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       )); 
     }
     catch(e){
-      print("Error: $e");
       showErrorDialog("Something went Wrong");
     }
     finally{

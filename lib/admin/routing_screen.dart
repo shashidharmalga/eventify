@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:go_router/go_router.dart';
 import 'package:project_duel_role/admin/screens/admin_bottom_bar.dart';
@@ -17,7 +16,6 @@ import 'package:project_duel_role/student/student_bottom_bar.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 Future<String?> getUserRole() async{
   final userId = Supabase.instance.client.auth.currentUser!.id;
-  if(userId==null) return null;
   final response = await Supabase.instance.client.from("profile").select().eq("id", userId).single();
   return response["role"] as String?;
 }

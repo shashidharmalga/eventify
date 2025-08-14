@@ -6,10 +6,9 @@ class StudentStatusService {
     final supabase = Supabase.instance.client;
     final userId = supabase.auth.currentUser!.id;
 
-    final response = await supabase.from("event_status").select(", events()").eq("user_id", userId);
+    final response = await supabase.from("event_status").select("*, events(*)").eq("user_id", userId);
 
     final data = response as List;
-
     return data.map((item) {
       final event = item['events'] ?? {};
       return StudentStatusModel(
@@ -24,20 +23,39 @@ class StudentStatusService {
         status: item['status'],
       );
     }).toList();
+    
   }
+  
 
   static Future<void> markStatus({
-  required String eventId,
-  required String status,
+    required String eventId,
+    required String status,
   }) async {
-  final supabase = Supabase.instance.client;
-  final userId = supabase.auth.currentUser!.id;
+    final supabase = Supabase.instance.client;
+    final userId = supabase.auth.currentUser!.id;
+    final existing = await supabase
+      .from('event_status')
+      .select()
+      .eq('event_id', eventId)
+      .eq('user_id', userId)
+      .eq('status', status);
 
-  await supabase.from('event_status').upsert({
-    'user_id': userId,
-    'event_id': eventId,
-    'status': status,
-  });
-}
+      if (existing.isNotEmpty) {
+        return;
+      }
 
+    await supabase.from('event_status').upsert({
+     'user_id': userId,
+     'event_id': eventId,
+     'status': status,
+   });
+  }
+  
+  static Future<void>deleteStatus({required String event_id, required String status}) async{
+    final userId= Supabase.instance.client.auth.currentUser?.id;
+    if (userId==null) throw Exception("No Logged in User");
+    final supabase=Supabase.instance.client;
+    await supabase.from("event_status").delete().eq("event_id", event_id).eq("user_id", userId).eq("status", status);
+
+  }
 }

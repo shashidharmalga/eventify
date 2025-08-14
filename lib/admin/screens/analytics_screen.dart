@@ -135,9 +135,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
             ),
             const SizedBox(height: 12),
 
-            ...attendees.map((a) => _buildAttendeeTile(a)).toList(),
+            ...attendees.map((a) => _buildAttendeeTile(a)),
 
-            // Load More Button
             OutlinedButton(
               style: OutlinedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 48),
@@ -152,7 +151,6 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
         ),
       ),
 
-      // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
         onTap: (i) {},

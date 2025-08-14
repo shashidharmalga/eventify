@@ -24,7 +24,6 @@ class _LoginPageState extends State<LoginPage> {
 
       if (data != null ) {
         final supabase= await Supabase.instance.client.from('profile').select().eq('id',data.id).single();
-        print(supabase["role"]);
         if (mounted){
           if (supabase['role']=='Student'){
             context.go('/student/home');
@@ -42,7 +41,6 @@ class _LoginPageState extends State<LoginPage> {
         );
       }
     } catch (e) {
-      print("Login error: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error: ${e.toString()}")),
       );

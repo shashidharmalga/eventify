@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class StudentProfileScreen extends StatefulWidget {
@@ -11,11 +12,19 @@ class StudentProfileScreen extends StatefulWidget {
 class _StudentProfileScreenState extends State<StudentProfileScreen> {
   Map<String,dynamic>? userData;
   bool isLoading = true;
+  final supabase= Supabase.instance.client.auth.currentUser?.id;
   @override
   void initState(){
     super.initState();
     fetchUserData();
   }
+  void signOut() async{
+   await Supabase.instance.client.auth.signOut();
+   if (mounted){
+      context.go('/login');
+   }
+  }
+
   Future<void> fetchUserData()async {
     try{
       final userId = await Supabase.instance.client.auth.currentUser?.id;
@@ -28,7 +37,6 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
           });
         }
         else{
-          print("No user data found.");
           setState(() {
             userData = null;
             isLoading = false;
@@ -37,7 +45,6 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
       }
     }
     catch (e) {
-      print("Error fetching user data: $e");
       setState(() {
         isLoading = false;
       });
@@ -107,7 +114,8 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.deepPurple,  
                           ),
-                        )
+                        ),
+                        ElevatedButton(onPressed: signOut, child: Text("Log out"))
                       ],
                   ),
                 ),

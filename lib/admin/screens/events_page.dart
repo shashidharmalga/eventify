@@ -65,7 +65,7 @@ class _EventsPageState extends ConsumerState<EventsPage> {
                       top: Radius.circular(12),
                     ),
                     child: Image.network(
-                      event.imageUrl ?? '',
+                      event.imageUrl,
                       height: 160,
                       width: double.infinity,
                       fit: BoxFit.cover,
@@ -86,7 +86,7 @@ class _EventsPageState extends ConsumerState<EventsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          event.name ?? '',
+                          event.name ,
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -97,11 +97,11 @@ class _EventsPageState extends ConsumerState<EventsPage> {
                           children: [
                             const Icon(Icons.calendar_today, size: 16),
                             const SizedBox(width: 4),
-                            Text(event.dateTime ?? ''),
+                            Text(event.dateTime),
                             const SizedBox(width: 12),
                             const Icon(Icons.access_time, size: 16),
                             const SizedBox(width: 4),
-                            Text(event.dateTime ?? ''),
+                            Text(event.dateTime),
                           ],
                         ),
                         const SizedBox(height: 4),
@@ -109,7 +109,7 @@ class _EventsPageState extends ConsumerState<EventsPage> {
                           children: [
                             const Icon(Icons.location_on, size: 16),
                             const SizedBox(width: 4),
-                            Text(event.location ?? ''),
+                            Text(event.location),
                           ],
                         ),
                         const SizedBox(height: 8),

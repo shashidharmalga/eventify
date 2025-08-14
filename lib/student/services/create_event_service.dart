@@ -8,7 +8,6 @@ class CreateEventService {
     final supabase = Supabase.instance.client;
 
     final response = await supabase.from("events").select();
-    print("resss_student:$response");
     return (response as List).map((item)=>CreateEventModel.fromJson(item)).toList();
   }
   static Future<void> deleteEventItem(String id) async {

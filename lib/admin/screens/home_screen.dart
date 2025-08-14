@@ -64,10 +64,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Welcome back,', style: TextStyle(color: Colors.white)),
+                    Text('Welcome back', style: TextStyle(color: Colors.white)),
                     SizedBox(height: 4),
                     Text(
-                      'Tech Society 👋',
+                      'Tech Society ',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -80,7 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-
               const SizedBox(height: 24),
 
               Row(

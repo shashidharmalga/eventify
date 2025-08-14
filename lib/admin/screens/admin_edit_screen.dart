@@ -5,7 +5,7 @@ import 'package:project_duel_role/admin/models/create_event_model.dart';
 import 'package:project_duel_role/admin/providers/create_event_provider.dart';
 
 class AdminEditScreen extends ConsumerStatefulWidget {
-  final CreateEventModel item; // strongly type the item
+  final CreateEventModel item;  
   const AdminEditScreen({super.key, required this.item});
 
   @override
@@ -22,7 +22,6 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
   @override
   void initState() {
     super.initState();
-    print(" Initializing AdminEditScreen for event: ${widget.item.id}");
     titleController = TextEditingController(text: widget.item.name ?? '');
     descriptionController =
         TextEditingController(text: widget.item.description ?? '');
@@ -37,7 +36,7 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
       try {
         selectedDate = DateTime.parse(widget.item.dateTime);
       } catch (_) {
-        selectedDate = DateTime.now(); // fallback
+        selectedDate = DateTime.now(); 
       }
     }
   }
@@ -66,7 +65,6 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
   }
 
   Future<void> _saveChanges() async {
-    print("Save button tapped");
 
     final title = titleController.text.trim();
     final desc = descriptionController.text.trim();
@@ -74,7 +72,6 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
     final imageUrl = imageController.text.trim();
 
     if (title.isEmpty || desc.isEmpty || loc.isEmpty || imageUrl.isEmpty) {
-      print("Missing required fields");
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please fill all fields")),
       );
@@ -93,12 +90,10 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
     );
 
     try {
-      print("Calling updateEvent in provider...");
       await ref
           .read(createEventItemProvider.notifier)
           .updateEvent(updatedEvent);
 
-      print("Event updated successfully");
       if (!mounted) return;
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -106,7 +101,6 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
       );
       Navigator.pop(context);
     } catch (e, st) {
-      print("Failed to update event: $e\n$st");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to update: $e")),
       );
