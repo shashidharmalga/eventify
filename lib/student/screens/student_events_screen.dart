@@ -72,19 +72,20 @@ class _StudentEventsScreenState extends ConsumerState<StudentEventsScreen> {
 
                         title: Text(event.name ?? "No Title"),
                         subtitle: Text(
-                          "${event.club ?? "Unknown Club"} • ${event.location ?? "No Location"}",
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(event.status ?? ""),
-                            const SizedBox(width: 5),
-                            IconButton(onPressed: () async{
-                              if (event.event_id!=null){
-                                await StudentStatusService.deleteStatus(event_id: '${event.event_id}', status: '${event.status}');
-                              }
+                            "${event.club ?? "Unknown Club"} • ${event.location ?? "No Location"}",
+                          ),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(event.status ?? ""),
+                              const SizedBox(width: 5),
+                              IconButton(onPressed: () async{
+                                if (event.event_id!=null){
+                                  await StudentStatusService.deleteStatus(event_id: '${event.event_id}', status: '${event.status}');
+                                  ref.refresh(studentStatusListProvider);
+                                }
 
-                            }, icon: Icon(Icons.cancel))
+                              }, icon: Icon(Icons.cancel))
                           ],
                         ),
                       ),

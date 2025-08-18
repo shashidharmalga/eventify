@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CreateEventPage extends StatefulWidget {
@@ -77,7 +78,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
           'registration_link': _regLinkController.text.trim(),
           'created_by': userId,
         });
-
+        context.go("/admin/home");
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Event created successfully")),
         );

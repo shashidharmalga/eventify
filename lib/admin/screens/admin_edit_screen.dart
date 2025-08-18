@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:project_duel_role/admin/models/create_event_model.dart';
 import 'package:project_duel_role/admin/providers/create_event_provider.dart';
@@ -22,13 +23,13 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
   @override
   void initState() {
     super.initState();
-    titleController = TextEditingController(text: widget.item.name ?? '');
+    titleController = TextEditingController(text: widget.item.name );
     descriptionController =
-        TextEditingController(text: widget.item.description ?? '');
+        TextEditingController(text: widget.item.description );
     locationController =
-        TextEditingController(text: widget.item.location ?? '');
+        TextEditingController(text: widget.item.location);
     imageController =
-        TextEditingController(text: widget.item.imageUrl ?? '');
+        TextEditingController(text: widget.item.imageUrl );
 
     try {
       selectedDate = DateFormat('d-M-yyyy').parse(widget.item.dateTime);
@@ -95,12 +96,12 @@ class _AdminEditScreenState extends ConsumerState<AdminEditScreen> {
           .updateEvent(updatedEvent);
 
       if (!mounted) return;
-
+      context.go("/admin/myEvents");
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Event updated successfully")),
       );
       Navigator.pop(context);
-    } catch (e, st) {
+    } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to update: $e")),
       );
