@@ -119,35 +119,11 @@ class _StudentHomeScreenState extends ConsumerState<StudentHomeScreen> {
             ),
 
             const SizedBox(height: 20),
-            SizedBox(
-              height: 45,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                itemCount: events.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 10),
-                itemBuilder: (context, index) {
-                  return ChoiceChip(
-                    label: Text(
-                      events[index],
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    selected: false,
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    onSelected: (_) {},
-                  );
-                },
-              ),
-            ),
-
-            const SizedBox(height: 25),
 
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "Upcoming Events",
+                "Your Events",
                 style: TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.bold,
@@ -281,8 +257,7 @@ class _StudentHomeScreenState extends ConsumerState<StudentHomeScreen> {
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.green,
                                             shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                              borderRadius: BorderRadius.circular(10),
                                             ),
                                           ),
                                           onPressed: () async {

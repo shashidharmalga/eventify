@@ -105,7 +105,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 34),
                         ElevatedButton.icon(
                           onPressed: () {},
                           icon: const Icon(Icons.edit),
@@ -115,7 +115,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                             backgroundColor: Colors.deepPurple,  
                           ),
                         ),
-                        ElevatedButton(onPressed: signOut, child: Text("Log out"))
+                        ElevatedButton(onPressed: signOut, child: Text("Log out", style: TextStyle(color: Colors.red),))
                       ],
                   ),
                 ),

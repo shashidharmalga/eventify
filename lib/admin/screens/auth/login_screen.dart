@@ -137,7 +137,9 @@ class _LoginPageState extends State<LoginPage> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
-                   context.go('/events');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Feature Comming Soon...")),
+                    );
                   },
                   child: const Text(
                     'Forgot Password?',
@@ -186,6 +188,9 @@ class _LoginPageState extends State<LoginPage> {
 
               ElevatedButton.icon(
                 onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Feature Comming Soon...")),
+                    );
                 },
                 icon: const Icon(Icons.g_mobiledata, color: Colors.red, size: 30),
                 label: const Text('Continue with Google'),

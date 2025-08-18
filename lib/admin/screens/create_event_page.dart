@@ -172,7 +172,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                 controller: _imageurlController,
                 decoration: InputDecoration(
                   labelText: 'Image URL',
-                  hintText: 'Enter Image URL...',
+                  hintText: 'Enter Image URL(cloudinary)...',
                   prefixIcon: const Icon(Icons.image),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
                   filled: true,

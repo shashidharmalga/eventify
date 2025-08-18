@@ -33,20 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Color.fromARGB(255, 61, 28, 152),
                     ),
                   ),
-                  const Spacer(),
-                  CircleAvatar(
-                    radius: 16,
-                    backgroundColor: Colors.white.withOpacity(0.3),
-                    child: const Icon(Icons.notifications,
-                        size: 20, color: Color.fromARGB(255, 46, 44, 154)),
-                  ),
-                  const SizedBox(width: 8),
-                  CircleAvatar(
-                    radius: 16,
-                    backgroundColor: Colors.white.withOpacity(0.3),
-                    child: const Icon(Icons.settings,
-                        size: 20, color: Color.fromARGB(255, 36, 41, 176)),
-                  ),
+                  
                 ],
               ),
 
@@ -140,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        context.go('/clubs');
+                        
                       },
                       borderRadius: BorderRadius.circular(12),
                       child: Container(

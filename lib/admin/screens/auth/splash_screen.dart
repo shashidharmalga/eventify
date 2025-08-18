@@ -33,14 +33,14 @@ class _SplashScreenState extends State<SplashScreen> {
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
-                'https://www.48hourslogo.com/48hourslogo_data/2019/06/07/85529_1559878697.png', 
+                'https://www.48hourslogo.com/48hourslogo_data/2019/06/09/85529_1560071821.png', 
                 height: 200,
                 width: 200,
               ),
             ),
             SizedBox(height: 16),
             Text(
-              'Food Delivery App',
+              'Eventify',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

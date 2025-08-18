@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:project_duel_role/admin/providers/create_event_provider.dart';
 import 'package:project_duel_role/admin/screens/admin_edit_screen.dart';
-import 'package:project_duel_role/admin/screens/home_screen.dart';
 
 class EventsPage extends ConsumerStatefulWidget {
   const EventsPage({super.key});
@@ -29,22 +29,10 @@ class _EventsPageState extends ConsumerState<EventsPage> {
           leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
-            );
+           context.push('/admin/home');
           },
         ),
-          actions: [
-            TextButton(
-              onPressed: () {
-              },
-              child: const Text(
-                "View All",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
+          
         ),
         body: ListView.builder(
           padding: const EdgeInsets.all(12),
@@ -132,8 +120,10 @@ class _EventsPageState extends ConsumerState<EventsPage> {
                             ),
                             const SizedBox(width: 8),
                             ElevatedButton.icon(
-                              onPressed: () {
-                               
+                              onPressed: () async{
+                               await ref.read(createEventItemProvider.notifier).deleteEvent(event.id);
+                               ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Event deleted successfully")),);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red,

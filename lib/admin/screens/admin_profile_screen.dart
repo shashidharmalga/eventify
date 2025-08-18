@@ -94,59 +94,16 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                   ),
                   const SizedBox(height: 24),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: const [
-                          Text("12",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                          SizedBox(height: 4),
-                          Text("Events", style: TextStyle(color: Colors.grey)),
-                        ],
-                      ),
-                      Column(
-                        children: const [
-                          Text("150",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                          SizedBox(height: 4),
-                          Text("Attendees",
-                              style: TextStyle(color: Colors.grey)),
-                        ],
-                      ),
-                      Column(
-                        children: const [
-                          Text("4.8",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                          SizedBox(height: 4),
-                          Text("Rating", style: TextStyle(color: Colors.grey)),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30),
-
                   ListTile(
                     leading: const Icon(Icons.event),
                     title: const Text('My Events'),
                     trailing: const Icon(Icons.chevron_right),
-                    onTap: () {},
+                    onTap: () {
+                      context.go('/admin/myEvents');
+                    },
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.add),
-                    title: const Text('Create New Event'),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.lock),
-                    title: const Text('Change Password'),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: () {},
-                  ),
+                  
+                 
                   ListTile(
                     leading: const Icon(Icons.logout),
                     title: const Text('Logout'),
